@@ -1,0 +1,24 @@
+<script src="{{ URL::asset('js/app.js')}}"></script>
+
+<script src="{{ URL::asset('assets/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{ URL::asset('plugins/popper.js/popper.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/node-waves/waves.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/feather-icons/feather.min.js')}}"></script>
+<!-- pace js -->
+<script src="{{ URL::asset('assets/libs/pace-js/pace.min.js')}}"></script>
+
+@yield('script')
+
+<script src="{{ URL::asset('assets/js/app.js')}}"></script>
+
+<script>
+    jQuery.event.special.touchstart = {
+        setup: function( _, ns, handle ) {
+            this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+        }
+    };
+</script>
+
