@@ -9,9 +9,16 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="{{ url('/') }}">
+                    <a href="index.html">
                         <i data-feather="home"></i>
-                        <span data-key="t-dashboard">Dashboard</span>
+                        <span data-key="t-dashboard">Ciudad</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/provincias') }}">
+                        <i data-feather="map"></i>
+                        <span data-key="t-maps">Provincia</span>
                     </a>
                 </li>
             </ul>

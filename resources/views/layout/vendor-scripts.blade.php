@@ -7,6 +7,7 @@
 <script src="{{ URL::asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
 <script src="{{ URL::asset('assets/libs/node-waves/waves.min.js')}}"></script>
 <script src="{{ URL::asset('assets/libs/feather-icons/feather.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
 <!-- pace js -->
 <script src="{{ URL::asset('assets/libs/pace-js/pace.min.js')}}"></script>
 

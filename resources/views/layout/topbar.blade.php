@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="{{ url('/') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                         <img src="{{ asset('/images/logo_meganet_sm.jpg') }}" alt="" height="24">
+                         <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                         <img src="{{ asset('/images/logo_meganet.jpg') }}" alt="" height="40">
+                         <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="40"><span class="logo-txt">App</span>
                     </span>
                 </a>
 
                 <a href="{{ url('/') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('/images/logo_meganet_sm.jpg') }}" alt="" height="24">
+                        <img src="{{ asset('assets/images/logo-sm.sv') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('/images/logo_meganet.jpg') }}" alt="" height="40">
+                        <img src="{{ asset('assets/images/logo-sm.sv') }}" alt="" height="40"><span class="logo-txt">App</span>
                     </span>
                 </a>
             </div>
@@ -33,17 +33,6 @@
                     <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
                     <i data-feather="sun" class="icon-lg layout-mode-light"></i>
                 </button>
-            </div>
-
-            <div class="dropdown d-none d-lg-inline-block ms-1">
-                <button type="button" class="btn header-item"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i data-feather="grid" class="icon-lg"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <div class="p-2">
-                    </div>
-                </div>
             </div>
 
             <div class="dropdown d-inline-block">
@@ -66,14 +55,9 @@
                     <!-- item-->
                     <a class="dropdown-item" href="#"><i
                             class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Perfil</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item" href="#">
                         <i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Desconectar
                     </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
                 </div>
             </div>
 
