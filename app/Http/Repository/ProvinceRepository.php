@@ -47,6 +47,18 @@ class ProvinceRepository
         return $model;
     }
 
+    public function firstOrCreate($input)
+    {
+        return $this->model::firstOrCreate($input);
+    }
+
+    public function createCityWithProvince($city, $province)
+    {
+        $city = $this->cityRepository->create(['name' => $city]);
+        $province = $this->firstOrCreate(['name' => $province]);
+        return $city->update(['province_id' => $province->id]);
+    }
+
     public function update($request, $id)
     {
         $single_relation = $this->single_relations();

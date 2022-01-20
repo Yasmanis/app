@@ -16,15 +16,30 @@ class CityRepository
         return $this->model::count();
     }
 
-    public function all(){
+    public function all()
+    {
         return $this->model::all();
     }
 
-    public function table_headers(){
+    public function getCityWithProvince()
+    {
+        $collection = collect($this->model::get()->pluck('name', 'province_name'));
+        return $collection->map(function ($item, $key) {
+            return [$item . ', ' . $key];
+        })->flatten(1)->values();
+    }
+
+    public function table_headers()
+    {
         return $this->model::CITY_TABLE_HEADER;
     }
 
-    public function updateProvinceRelation($city_id, $province_id){
+    public function create($input){
+        return $this->model::create($input);
+    }
+
+    public function updateProvinceRelation($city_id, $province_id)
+    {
         return $this->model::findOrFail($city_id)->update(['province_id' => $province_id]);
     }
 }

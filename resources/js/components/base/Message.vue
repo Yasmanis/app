@@ -10,7 +10,7 @@ export default {
     props: {
         message: String
     },
-    setup(props){
+    setup(props) {
         onMounted(() => {
             toastr.success(`${props.message}`)
         })

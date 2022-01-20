@@ -6,7 +6,7 @@
                 <th v-for="header in headers">
                     {{ header }}
                 </th>
-                <th>Acciones</th>
+                <th v-if="!no_action">Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -14,7 +14,7 @@
                 <td v-for="(headerV,headerK) in headers">
                     <div v-html="getTdVal(headerK, val)"></div>
                 </td>
-                <td>
+                <td v-if="!no_action">
                     <a
                         class="mr-2"
                         :href="`${base_url}/${val.id}/edit`"
@@ -47,7 +47,11 @@ export default {
     props: {
         data: String,
         table_header: String,
-        base_url: String
+        base_url: String,
+        no_action: {
+            type: String,
+            default: null
+        }
     },
     setup(props) {
         const headers = ref(JSON.parse(props.table_header));
@@ -58,8 +62,8 @@ export default {
         }
 
         const deleteItem = async (id) => {
-            if (confirm('Esta seguro que desea eliminar este dato')){
-                await axios["delete"](`${props.base_url}/${id}`,{}).then((response) => {
+            if (confirm('Esta seguro que desea eliminar este dato')) {
+                await axios["delete"](`${props.base_url}/${id}`, {}).then((response) => {
                     toastr.success(`Elemento eliminado correctamente`, module)
                     dataTable.value = _.filter(dataTable.value, v => (v.id != id))
                 });

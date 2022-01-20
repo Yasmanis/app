@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { reactive, ref, watch, onMounted } from "vue";
+import {reactive, ref, watch, onMounted} from "vue";
 import {convertToSelectChoice, getOptions, selectTransform} from "../../helpers/Transform";
 
 export default {
@@ -33,22 +33,22 @@ export default {
             default: {},
         },
         property: Object,
-        modelValue: Number|String,
+        modelValue: Number | String,
     },
-    setup(props, { emit }) {
+    setup(props, {emit}) {
         const val = ref(props.modelValue || null);
         const options = ref([]);
         const opts = reactive(options);
         const choice = ref();
 
         watch(val, () => {
-            emit("update-field", { value: val, field: props.property.field });
+            emit("update-field", {value: val, field: props.property.field});
         });
 
         watch(
             () => props.modelValue,
             (actual, actionBefore) => {
-                if (actual){
+                if (actual) {
                     choice.value.setChoiceByValue(actual)
                 }
             }

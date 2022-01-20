@@ -25,7 +25,7 @@ class ProvinceController extends Controller
     public function index()
     {
         $this->data['table_header'] = json_encode($this->provinceRepository->table_headers());
-        $this->data['provinces'] = json_encode($this->provinceRepository->all());
+        $this->data['dataTable'] = json_encode($this->provinceRepository->all());
         $this->data['base_url'] = '/provincias';
         return view('module.province.index', $this->data);
     }

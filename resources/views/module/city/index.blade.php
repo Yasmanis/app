@@ -6,12 +6,8 @@
             <div class="card">
                 <div class="card-header d-flex flex-wrap align-items-center mb-4">
                     <div class="me-2">
-                        <h4 class="card-title">Provincias</h4>
-                        <p class="card-title-desc">Listado de Provincias:</p>
-                    </div>
-                    <div class="ms-auto">
-                        <a href="{{ route('provincias.create') }}"
-                           class="btn btn-soft-primary waves-effect waves-light">Agregar Provincia</a>
+                        <h4 class="card-title">Ciudades</h4>
+                        <p class="card-title-desc">Listado de Ciudades:</p>
                     </div>
                 </div>
                 <div class="card-body">
@@ -19,6 +15,7 @@
                         table_header="{{ $table_header }}"
                         data="{{ $dataTable }}"
                         base_url="{{ $base_url }}"
+                        no_action="true"
                     ></table-vue>
                 </div>
             </div>

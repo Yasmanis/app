@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\CityRepository;
 use App\Models\City;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+    protected $data;
+    protected $cityRepository;
+
+    public function __construct(CityRepository $cityRepository)
+    {
+        $this->cityRepository = $cityRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,10 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $this->data['table_header'] = json_encode($this->cityRepository->table_headers());
+        $this->data['dataTable'] = json_encode($this->cityRepository->all());
+        $this->data['base_url'] = '/ciudades';
+        return view('module.city.index', $this->data);
     }
 
     /**

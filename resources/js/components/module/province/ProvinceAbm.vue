@@ -81,7 +81,7 @@ export default {
         let object = {city: {value: ''}, name: {value: ''}, description: {value: ''}};
         let url = '/provincias';
         let requestType = 'post';
-        if (props.data){
+        if (props.data) {
             url = `${url}/${objData.id}`;
             requestType = 'put';
             object.city.value = objData.city ? objData.city.id : '';

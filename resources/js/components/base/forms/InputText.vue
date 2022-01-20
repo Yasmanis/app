@@ -15,7 +15,8 @@
                 v-model="val"
                 :disabled="property.disabled"
             />
-            <div v-if="errors.has(property.field)" class="pristine-error text-help" v-html="errors.get(property.field)"></div>
+            <div v-if="errors.has(property.field)" class="pristine-error text-help"
+                 v-html="errors.get(property.field)"></div>
         </div>
     </div>
 </template>

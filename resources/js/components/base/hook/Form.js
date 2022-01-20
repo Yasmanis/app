@@ -95,12 +95,12 @@ class Form {
                     resolve(response.data);
                 })
                 .catch((error) => {
-                    if (error.response.status === 422){
+                    if (error.response.status === 422) {
                         this.onFail(error.response.data.errors);
 
                         reject(error.response.data);
-                    }else{
-                        if (error.response.status === 403){
+                    } else {
+                        if (error.response.status === 403) {
                             this.actionForbidden(error.response.data);
                         }
                     }
@@ -126,11 +126,11 @@ class Form {
         this.errors.record(errors);
     }
 
-    actionForbidden(data){
+    actionForbidden(data) {
         this.responseForbidden = data;
     }
 
-    showResponseForbidden(){
+    showResponseForbidden() {
         return this.responseForbidden;
     }
 }
