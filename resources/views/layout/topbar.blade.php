@@ -14,10 +14,10 @@
 
                 <a href="{{ url('/') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-sm.sv') }}" alt="" height="24">
+                        <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-sm.sv') }}" alt="" height="40"><span class="logo-txt">App</span>
+                        <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="40"><span class="logo-txt">App</span>
                     </span>
                 </a>
             </div>
