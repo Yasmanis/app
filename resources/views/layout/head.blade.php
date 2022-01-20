@@ -8,7 +8,9 @@
 <!-- Icons Css -->
 <link href="{{ URL::asset('assets/css/icons.min.css')}}" id="icons-style" rel="stylesheet" type="text/css"/>
 <!-- Choice Css -->
-<link href="{{ URL::asset('assets/libs/choices.js/public/assets/styles/choices.min.css')}}" id="icons-style" rel="stylesheet" type="text/css"/>
+<link href="{{ URL::asset('assets/libs/choices.js/public/assets/styles/choices.min.css')}}" rel="stylesheet" type="text/css"/>
 <!-- App Css-->
 <link href="{{ URL::asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('css/app.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
+<!-- Toastr Css -->
+<link href="{{ URL::asset('/plugins/toastr/build/toastr.min.css')}}" rel="stylesheet" type="text/css"/>

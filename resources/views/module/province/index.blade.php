@@ -17,9 +17,15 @@
                     <table-vue
                         table_header="{{ $table_header }}"
                         data="{{ $provinces }}"
+                        base_url="{{ $base_url }}"
                     ></table-vue>
                 </div>
             </div>
         </div>
     </div>
+    @if(session()->has('message'))
+        <Message
+            message="{{ session()->get('message') }}"
+        ></Message>
+    @endif
 @endsection

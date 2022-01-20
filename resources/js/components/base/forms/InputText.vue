@@ -37,15 +37,7 @@ export default {
         },
     },
     setup(props, {emit}) {
-
-        const val = ref(null);
-        onMounted(async () => {
-            val.value  = props.modelValue;
-            emit("update-field", {
-                value: val,
-                field: props.property.field,
-            });
-        });
+        const val = ref(props.modelValue);
 
         watch(val, () => {
             emit("update-field", {value: val, field: props.property.field});

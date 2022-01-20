@@ -1,7 +1,7 @@
-@extends('meganet.layout.master')
+@extends('layout.master')
 
 @section('content')
     <province-abm
-        id="{{ $id }}"
+        data="{{ $province }}"
     ></province-abm>
 @endsection

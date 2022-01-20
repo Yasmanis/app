@@ -9,5 +9,13 @@ class Province extends Model
 {
     use HasFactory;
 
-    const CITY_TABLE_HEADER = ['name' => 'Nombre', 'description' => 'Descripcion'];
+    const CITY_TABLE_HEADER = ['name' => 'Nombre', 'description' => 'Descripción'];
+    const SINGLE_RELATION = ['city'];
+
+    protected $guarded = [];
+
+    public function city()
+    {
+        return $this->hasOne(City::class);
+    }
 }

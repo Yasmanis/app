@@ -33,13 +33,10 @@ export default {
             default: {},
         },
         property: Object,
-        modelValue: {
-            type: String,
-            default: null,
-        },
+        modelValue: Number|String,
     },
     setup(props, { emit }) {
-        const val = ref(props.modelValue);
+        const val = ref(props.modelValue || null);
         const options = ref([]);
         const opts = reactive(options);
         const choice = ref();
@@ -51,7 +48,9 @@ export default {
         watch(
             () => props.modelValue,
             (actual, actionBefore) => {
-                choice.value.setChoiceByValue(actual)
+                if (actual){
+                    choice.value.setChoiceByValue(actual)
+                }
             }
         );
 
@@ -61,7 +60,7 @@ export default {
                 : await getOptions(props.property.search);
 
             $(document).ready(async () => {
-                choice.value = await convertToSelectChoice(props.property.field, options, props.modelValue, props.property.placeholder);
+                choice.value = await convertToSelectChoice(props.property.field, options, val.value, props.property.placeholder);
             });
         });
 

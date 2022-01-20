@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex flex-wrap align-items-center mb-4">
                     <div class="me-2">
-                        <h4 class="card-title">{{ id ? 'Editar' : 'Crear' }} Provincia:</h4>
+                        <h4 class="card-title">{{ data ? 'Editar' : 'Crear' }} Provincia:</h4>
                     </div>
                 </div>
                 <div class="card-body vh-60">
@@ -16,16 +16,20 @@
                         }"
                         :errors="dataForm.data.errors"
                         v-model="dataForm.data.name"
+                        @update-field="updateThisField"
+                        @click="clearError('name')"
                     />
 
                     <InputText
                         :property="{
                             'field': 'description',
-                            'label': 'Descripcion:',
-                            'placeholder': 'description',
+                            'label': 'Descripción:',
+                            'placeholder': 'descripción',
                         }"
                         :errors="dataForm.data.errors"
                         v-model="dataForm.data.description"
+                        @update-field="updateThisField"
+                        @click="clearError('description')"
                     />
 
                     <SelectChoiceComponent
@@ -41,10 +45,15 @@
                         }"
                         :errors="dataForm.data.errors"
                         v-model="dataForm.data.city"
+                        @update-field="updateThisField"
+                        @click="clearError('city')"
                     />
 
                     <div class="row mt-4">
-                        <button type="button" class="btn btn-soft-primary waves-effect waves-light m-auto w-25" @click="submit">{{ id ? 'Salvar' : 'Crear' }} Provincia</button>
+                        <button type="button" class="btn btn-soft-primary waves-effect waves-light m-auto w-25"
+                                :disabled="dataForm.data.errors.any()"
+                                @click="submit">{{ data ? 'Salvar' : 'Crear' }} Provincia
+                        </button>
                     </div>
                 </div>
             </div>
@@ -61,24 +70,41 @@ import Form from "../../base/hook/Form";
 export default {
     name: "ProvinceAbm",
     props: {
-        id: {
-            type: String,
-            default: null
-        },
         data: {
             type: String,
             default: null
         }
     },
     components: {SelectChoiceComponent, InputText},
-    setup() {
+    setup(props) {
+        const objData = JSON.parse(props.data);
+        let object = {city: {value: ''}, name: {value: ''}, description: {value: ''}};
+        let url = '/provincias';
+        let requestType = 'post';
+        if (props.data){
+            url = `${url}/${objData.id}`;
+            requestType = 'put';
+            object.city.value = objData.city ? objData.city.id : '';
+            object.name.value = objData.name;
+            object.description.value = objData.description;
+        }
+
         const dataForm = reactive({
-            data: new Form({}),
+            data: new Form(object),
         });
 
         const submit = () => {
+            dataForm.data.submit(requestType, url).then(((response) => location.href = response));
         }
-        return {dataForm, submit}
+
+        const updateThisField = ({field, value}) => {
+            dataForm.data[field] = value;
+        };
+
+        const clearError = (field) => {
+            dataForm.data.errors.clear(field);
+        };
+        return {objData, dataForm, updateThisField, clearError, submit}
     }
 }
 </script>

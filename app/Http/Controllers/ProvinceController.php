@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repository\ProvinceRepository;
+use App\Http\Requests\ProvinceRequest;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,11 @@ class ProvinceController extends Controller
     protected $data;
     protected $provinceRepository;
 
-    public function __construct(ProvinceRepository $provinceRepository){
+    public function __construct(ProvinceRepository $provinceRepository)
+    {
         $this->provinceRepository = $provinceRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +26,13 @@ class ProvinceController extends Controller
     {
         $this->data['table_header'] = json_encode($this->provinceRepository->table_headers());
         $this->data['provinces'] = json_encode($this->provinceRepository->all());
+        $this->data['base_url'] = '/provincias';
         return view('module.province.index', $this->data);
+    }
+
+    public function success($id)
+    {
+        return redirect()->route('provincias.index')->with(['message' => 'Provincia ' . ($id == 'null' ? 'Creada' : 'Actualizada') . ' Correctamente']);
     }
 
     /**
@@ -39,18 +48,19 @@ class ProvinceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProvinceRequest $request
+     * @return String
      */
-    public function store(Request $request)
+    public function store(ProvinceRequest $request)
     {
-        //
+        $this->provinceRepository->create($request);
+        return '/provincias/success/null';
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Province  $province
+     * @param \App\Models\Province $province
      * @return \Illuminate\Http\Response
      */
     public function show(Province $province)
@@ -61,34 +71,36 @@ class ProvinceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Province  $province
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Province $province)
+    public function edit($id)
     {
-        //
+        $this->data['province'] = json_encode($this->provinceRepository->find($id)->with('city')->first());
+        return view('module.province.edit', $this->data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Province  $province
+     * @param ProvinceRequest $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Province $province)
+    public function update(ProvinceRequest $request, $id)
     {
-        //
+        $this->provinceRepository->update($request, $id);
+        return '/provincias/success/'. $id;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Province  $province
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Province $province)
+    public function destroy($id)
     {
-        //
+        return $this->provinceRepository->delete($id);
     }
 }

@@ -18,7 +18,7 @@ export const getOptions = async (val) => {
 
 export const convertToSelectChoice = async (id, allOptions, val, placeholder) => {
     let options = _.map(allOptions.value, opt => {
-        if (opt.value == val) return { value: opt.value, label: opt.text, selected: true}
+        if (val && opt.value == val) return { value: opt.value, label: opt.text, selected: true}
         return { value: opt.value, label: opt.text}
     });
 

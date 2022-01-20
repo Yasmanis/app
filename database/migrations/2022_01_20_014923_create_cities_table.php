@@ -18,6 +18,13 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->unsignedBigInteger('province_id')->nullable();
+
+            $table->foreign('province_id')
+                ->references('id')
+                ->on('provinces')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
