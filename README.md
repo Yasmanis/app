@@ -31,3 +31,13 @@ http://localhost:8000/api/get-city?token=51774552545955402348552a48445944474446
 ```php
 php artisan create:city Parana, EntreRios
 ```
+
+## ABM Provincia
+```php
+http://localhost:8000/provincias
+```
+
+## Tabla de ciudades
+```php
+http://localhost:8000/ciudades
+```
