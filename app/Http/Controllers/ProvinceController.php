@@ -76,7 +76,7 @@ class ProvinceController extends Controller
      */
     public function edit($id)
     {
-        $this->data['province'] = json_encode($this->provinceRepository->find($id)->with('city')->first());
+        $this->data['province'] = json_encode($this->provinceRepository->find($id)->load('city'));
         return view('module.province.edit', $this->data);
     }
 
